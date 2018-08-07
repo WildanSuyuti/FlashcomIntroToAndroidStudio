@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/space_15"
+    android:background="@color/colorAccent"
+    android:orientation="horizontal"
+    android:padding="@dimen/space_15"
+    tools:context=".main.MainActivity">
+
+
+    <TextView
+        android:id="@+id/tv_judul"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/space_15"
+        android:text="Judulnya!"
+        android:textAllCaps="false"
+        android:textSize="@dimen/size_17"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_judul"
+        android:text="Ini Content"
+        android:textSize="@dimen/size_17" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="Ini Paling Bawah"
+        android:textSize="@dimen/size_17" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text="Ini paling Kanan"
+        android:textSize="@dimen/size_17" />
+
+</RelativeLayout>
