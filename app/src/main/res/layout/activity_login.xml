@@ -15,8 +15,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:src="@drawable/google_icon"
-            android:visibility="visible"
-            />
+            android:visibility="visible" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -34,6 +33,7 @@
             android:padding="@dimen/space_15">
 
             <ImageView
+
                 android:layout_width="@dimen/space_100"
                 android:layout_height="@dimen/space_100"
                 android:layout_gravity="center"
@@ -41,6 +41,7 @@
                 android:src="@drawable/person" />
 
             <EditText
+                android:id="@+id/et_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_spin"
@@ -49,6 +50,7 @@
                 android:padding="@dimen/space_15" />
 
             <EditText
+                android:id="@+id/et_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_spin"
@@ -58,11 +60,11 @@
 
             <Button
                 android:id="@+id/btn_login"
-                android:onClick="doLogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_15"
                 android:background="@android:color/holo_blue_dark"
+                android:onClick="doLogin"
                 android:text="Sign In"
                 android:textAllCaps="false"
                 android:textColor="@android:color/white" />
@@ -79,13 +81,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/space_15"
             android:layout_marginTop="@dimen/space_15"
+            android:onClick="goRegister"
             android:padding="@dimen/space_15"
             android:text="Create an account"
             android:textColor="@android:color/holo_blue_dark"
-            android:textSize="@dimen/size_17"
-            android:layout_marginBottom="@dimen/space_15"
-            />
+            android:textSize="@dimen/size_17" />
     </LinearLayout>
 
 
