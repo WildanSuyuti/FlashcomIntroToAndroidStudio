@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,43 +9,69 @@
     android:padding="@dimen/space_15"
     tools:context=".main.MainActivity">
 
-    <ImageView
-        android:id="@+id/iv_gambar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true" />
-
-    <TextView
-        android:id="@+id/tv_judul"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/space_15"
-        android:text="Judulnya!"
-        android:textAllCaps="false"
-        android:textSize="@dimen/size_17"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/tv_content"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_judul"
-        android:gravity="right"
-        android:text="Ini Content"
-        android:textSize="@dimen/size_17" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:text="Ini Paling Bawah"
-        android:textSize="@dimen/size_17" />
+        <ImageView
+            android:id="@+id/iv_gambar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:text="Ini paling Kanan"
-        android:textSize="@dimen/size_17" />
+        <TextView
+            android:id="@+id/tv_judul"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/space_15"
+            android:text="Judulnya!"
+            android:textAllCaps="false"
+            android:textSize="@dimen/size_17"
+            android:textStyle="bold" />
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/tv_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_judul"
+            android:gravity="right"
+            android:text="Ini Content"
+            android:textSize="@dimen/size_17" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:text="Ini Paling Bawah"
+            android:textSize="@dimen/size_17" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="Ini paling Kanan"
+            android:textSize="@dimen/size_17" />
+
+        <Button
+            android:id="@+id/btn_go_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="@dimen/space_15"
+            android:text="Ke halaman Login"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btn_inbox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:onClick="goInbox"
+            android:text="Ke halaman Inbox"
+            android:textAllCaps="false" />
+
+    </LinearLayout>
+
+
+</ScrollView>

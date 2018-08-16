@@ -1,17 +1,16 @@
-package id.co.flashcome.introandroidstudio.main;
+package id.co.flashcome.introandroidstudio.auth;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import id.co.flashcome.introandroidstudio.R;
+import id.co.flashcome.introandroidstudio.main.MainActivity;
 import id.co.flashcome.introandroidstudio.model.User;
 
 /**
@@ -37,11 +36,11 @@ public class LoginActivity extends AppCompatActivity {
         etEmail = findViewById(R.id.et_email);
         etPassword = findViewById(R.id.et_password);
 
-        Log.d(TAG, "onCreate: di panggil");
+//        Log.d(TAG, "onCreate: di panggil");
 
     }
 
-    @Override
+/*    @Override
     protected void onResume() {
         super.onResume();
         Log.d(TAG, "onResume: di panggil");
@@ -63,7 +62,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         Log.d(TAG, "onDestroy: di panggil");
-    }
+    }*/
 
     public void doLogin(View view) {
 //        Toast.makeText(LoginActivity.this, "Tombol Login di tekan !", Toast.LENGTH_SHORT).show();
@@ -103,7 +102,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-     @Override
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 

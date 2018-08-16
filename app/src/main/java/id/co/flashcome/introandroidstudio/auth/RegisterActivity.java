@@ -1,4 +1,4 @@
-package id.co.flashcome.introandroidstudio.main;
+package id.co.flashcome.introandroidstudio.auth;
 
 import android.app.Activity;
 import android.content.Intent;
