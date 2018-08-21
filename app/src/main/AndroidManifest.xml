@@ -28,6 +28,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".feature.inbox.InboxActivity" />
+        <activity android:name=".feature.inbox.AddDataActivity"></activity>
     </application>
 
 </manifest>

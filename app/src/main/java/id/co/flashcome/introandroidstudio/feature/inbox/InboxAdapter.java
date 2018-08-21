@@ -71,6 +71,11 @@ public class InboxAdapter extends RecyclerView.Adapter<InboxAdapter.ViewHolder> 
         notifyDataSetChanged();
     }
 
+    public void add(int positon, Inbox inbox) {
+        this.dataset.add(positon, inbox);
+        notifyDataSetChanged();
+    }
+
     public void clear() {
         this.dataset.clear();
         notifyDataSetChanged();
