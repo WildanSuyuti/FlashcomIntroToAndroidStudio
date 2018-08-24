@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,8 +13,9 @@ import com.bumptech.glide.Glide;
 import id.co.flashcome.introandroidstudio.R;
 import id.co.flashcome.introandroidstudio.auth.LoginActivity;
 import id.co.flashcome.introandroidstudio.feature.inbox.InboxActivity;
-import id.co.flashcome.introandroidstudio.model.Inbox;
 import id.co.flashcome.introandroidstudio.model.User;
+import id.co.flashcome.introandroidstudio.utility.DatabaseHandler;
+import id.co.flashcome.introandroidstudio.utility.SessionManager;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,22 +28,28 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        String email = getIntent().getStringExtra(LoginActivity.KEY_EMAIL);
+/*        String email = getIntent().getStringExtra(LoginActivity.KEY_EMAIL);
         String password = getIntent().getStringExtra(LoginActivity.KEY_PASSWORD);
-        User user = getIntent().getParcelableExtra(LoginActivity.KEY_USER);
+        User user = getIntent().getParcelableExtra(LoginActivity.KEY_USER);*/
 
-        Button btnGoLogin = findViewById(R.id.btn_go_login);
+/*        Button btnGoLogin = findViewById(R.id.btn_go_login);
         btnGoLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
 
         TextView tvJudul = findViewById(R.id.tv_judul);
-        if (user != null)
-            tvJudul.setText("Email: " + user.getEmail() + " password: " + user.getPassword());
+//        User user = SessionManager.getInstance().getUser();
+        //mengambil data user dari database berdasarkan email yang sudah tersimpan di
+        // sharedpreference ketika login
+        User user = DatabaseHandler.getInstance().getUser(SessionManager.getInstance().getEmail());
+        if (user != null) tvJudul.setText(user.toString());
+
+/*        if (user != null)
+            tvJudul.setText("Email: " + user.getEmail() + " password: " + user.getPassword());*/
 
         ImageView imageView = findViewById(R.id.iv_gambar);
         Glide.with(this).load("https://www.gstatic.com/webp/gallery3/1.png").into(imageView);
@@ -55,6 +61,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void goInbox(View view) {
         startActivity(new Intent(MainActivity.this, InboxActivity.class));
+    }
+
+    public void logout(View view) {
+        SessionManager.getInstance().clear();
+        startActivity(new Intent(MainActivity.this, LoginActivity.class));
     }
 
     @Override

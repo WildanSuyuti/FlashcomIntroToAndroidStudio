@@ -60,7 +60,8 @@
             android:layout_alignParentBottom="true"
             android:layout_marginTop="@dimen/space_15"
             android:text="Ke halaman Login"
-            android:textAllCaps="false" />
+            android:textAllCaps="false"
+            android:visibility="gone" />
 
         <Button
             android:id="@+id/btn_inbox"
@@ -69,6 +70,13 @@
             android:layout_alignParentBottom="true"
             android:onClick="goInbox"
             android:text="Ke halaman Inbox"
+            android:textAllCaps="false" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="logout"
+            android:text="Logout"
             android:textAllCaps="false" />
 
     </LinearLayout>

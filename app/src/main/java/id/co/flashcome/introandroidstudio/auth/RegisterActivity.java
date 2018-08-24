@@ -9,6 +9,8 @@ import android.widget.EditText;
 
 import id.co.flashcome.introandroidstudio.R;
 import id.co.flashcome.introandroidstudio.model.User;
+import id.co.flashcome.introandroidstudio.utility.DatabaseHandler;
+import id.co.flashcome.introandroidstudio.utility.SessionManager;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -52,10 +54,22 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
-        Intent intent = new Intent();
+
+        //menambahkan data user ke database
+        DatabaseHandler db = DatabaseHandler.getInstance();
+        db.addUser(new User(nama, email, password));
+
+        //sharredPreferences
+/*        SessionManager session = SessionManager.getInstance();
+        session.setNama(nama);
+        session.setEmail(email);
+        session.setPassword(password);*/
+
+        //intent
+       /* Intent intent = new Intent();
         User user = new User(nama, email, password);
         intent.putExtra("user", user);
-        setResult(RESULT_REGISTER, intent);
+        setResult(RESULT_REGISTER, intent);*/
         finish();
 
     }

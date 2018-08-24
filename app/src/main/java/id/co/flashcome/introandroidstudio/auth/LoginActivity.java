@@ -12,6 +12,8 @@ import android.widget.Toast;
 import id.co.flashcome.introandroidstudio.R;
 import id.co.flashcome.introandroidstudio.main.MainActivity;
 import id.co.flashcome.introandroidstudio.model.User;
+import id.co.flashcome.introandroidstudio.utility.DatabaseHandler;
+import id.co.flashcome.introandroidstudio.utility.SessionManager;
 
 /**
  * Created by kakaroto on 07/08/18.
@@ -80,21 +82,49 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        if (!(email.equals(user.getEmail()) && password.equals(user.getPassword()))) {
+        DatabaseHandler db = DatabaseHandler.getInstance();
+
+        //pengecekan email && password dengan data di database jika valid maka login sekaligus menyimpan session
+        if (db.checkUser(email, password)) {
+            SessionManager.getInstance().setLoggedIn(true);
+            SessionManager.getInstance().setEmail(email);
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
+        } else {
+            Toast.makeText(this, "Email atau password tidak cocok", Toast.LENGTH_SHORT).show();
+        }
+
+/*        if (!(email.equals(user.getEmail()) && password.equals(user.getPassword()))) {
             Toast.makeText(this, "Email / Password salah !", Toast.LENGTH_SHORT).show();
             return;
-        }
-        Log.d(TAG, "doLogin: " + user.toString());
+        }*/
+/*        Log.d(TAG, "doLogin: " + user.toString());
 
-        Log.d(TAG, "email :  " + email + " password: " + password);
-        Intent intent = new Intent(this, MainActivity.class);
+        Log.d(TAG, "email :  " + email + " password: " + password);*/
+
+
+        //login dengan sharedPreferences
+        /*SessionManager session = SessionManager.getInstance();
+         if (email.equals(session.getEmail()) && password.equals(session.getPassword())) {
+            session.setLoggedIn(true);
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
+        } else {
+            Toast.makeText(this, "Email atau password tidak cocok", Toast.LENGTH_SHORT).show();
+        }*/
+
+        /*Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra(KEY_EMAIL, email);
         intent.putExtra(KEY_PASSWORD, password);
 
         intent.putExtra(KEY_USER, new User(email, password));
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
-        finish();
+        finish();*/
     }
 
     public void goRegister(View view) {
