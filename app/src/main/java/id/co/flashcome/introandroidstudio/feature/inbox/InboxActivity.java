@@ -20,6 +20,7 @@ import java.util.List;
 
 import id.co.flashcome.introandroidstudio.R;
 import id.co.flashcome.introandroidstudio.model.Inbox;
+import id.co.flashcome.introandroidstudio.utility.DatabaseHandler;
 import id.co.flashcome.introandroidstudio.utility.RecyclerTouchListener;
 
 /**
@@ -31,11 +32,17 @@ public class InboxActivity extends AppCompatActivity {
     private RecyclerView rvInbox;
     private InboxAdapter adapter;
     private SwipeRefreshLayout swipe;
+    private DatabaseHandler db;
+    private List<Inbox> inboxes;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inbox);
+
+        inboxes = new ArrayList<>();
+        db = DatabaseHandler.getInstance();
+
         rvInbox = findViewById(R.id.rv_inbox);
         swipe = findViewById(R.id.swipe_refresh);
 
@@ -45,14 +52,20 @@ public class InboxActivity extends AppCompatActivity {
         rvInbox.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 //        rvInbox.addItemDecoration(new SpacesItemDecoration(new Utils(this).getPixelByDP(8)));
 
-        final List<Inbox> inboxes = new ArrayList<>();
+/*        final List<Inbox> inboxes = new ArrayList<>();
         inboxes.add(new Inbox("Budi", "hai ... ! ", "19:08"));
         inboxes.add(new Inbox("Rudi", "ho ... ! ", "11:08"));
         inboxes.add(new Inbox("Aldi", "hei ... ! ", "12:08"));
         inboxes.add(new Inbox("Andi", "hii ... ! ", "10:08"));
         inboxes.add(new Inbox("Sandi", "hasssi ... ! ", "17:08"));
-        inboxes.add(new Inbox("Ferdi", "haaai ... ! ", "16:08"));
+        inboxes.add(new Inbox("Ferdi", "haaai ... ! ", "16:08"));*/
 
+        if (!db.getAllInbox().isEmpty()) {
+            inboxes.addAll(db.getAllInbox());
+            for (Inbox inbox : db.getAllInbox()) {
+                Log.d(TAG, "onCreate inbox data: " + inbox.toString());
+            }
+        }
         adapter = new InboxAdapter();
         adapter.addAll(inboxes);
 //        adapter.add(new Inbox("aasas", "sasa", "sas"));
@@ -99,7 +112,9 @@ public class InboxActivity extends AppCompatActivity {
                 alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        db.deleteInbox(inboxes.get(position));
                         adapter.remove(position);
+
                     }
                 });
 
@@ -130,12 +145,14 @@ public class InboxActivity extends AppCompatActivity {
         if (requestCode == 12) {
             if (resultCode == 1) {
                 Inbox inbox = data.getParcelableExtra("inbox");
+                db.addInbox(inbox);
                 adapter.add(inbox);
                 swipe.setRefreshing(false);
             } else if (resultCode == 2) {
                 Inbox inbox = data.getParcelableExtra("inbox");
                 int inboxPosition = data.getIntExtra("inbox-position", 0);
                 Log.d(TAG, "onActivityResult: inbox position : " + inboxPosition);
+                db.updateInbox(inbox);
                 adapter.remove(inboxPosition);
                 adapter.add(inboxPosition, inbox);
             }

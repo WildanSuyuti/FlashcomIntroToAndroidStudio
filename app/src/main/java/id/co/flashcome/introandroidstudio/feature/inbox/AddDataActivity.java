@@ -9,6 +9,7 @@ import android.widget.EditText;
 
 import id.co.flashcome.introandroidstudio.R;
 import id.co.flashcome.introandroidstudio.model.Inbox;
+import id.co.flashcome.introandroidstudio.utility.DatabaseHandler;
 
 public class AddDataActivity extends AppCompatActivity {
 
@@ -16,11 +17,14 @@ public class AddDataActivity extends AppCompatActivity {
     private Button btnSimpan;
     private int inboxPosition;
     private boolean isEdit;
+    private DatabaseHandler db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_data);
+
+        db = DatabaseHandler.getInstance();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Tambah Data");

@@ -45,8 +45,12 @@ public class MainActivity extends AppCompatActivity {
 //        User user = SessionManager.getInstance().getUser();
         //mengambil data user dari database berdasarkan email yang sudah tersimpan di
         // sharedpreference ketika login
-        User user = DatabaseHandler.getInstance().getUser(SessionManager.getInstance().getEmail());
-        if (user != null) tvJudul.setText(user.toString());
+
+        DatabaseHandler db = DatabaseHandler.getInstance();
+        if (!db.getAllUser().isEmpty()) {
+            User user = DatabaseHandler.getInstance().getUser(SessionManager.getInstance().getEmail());
+            if (user != null) tvJudul.setText(user.toString());
+        }
 
 /*        if (user != null)
             tvJudul.setText("Email: " + user.getEmail() + " password: " + user.getPassword());*/
@@ -56,6 +60,10 @@ public class MainActivity extends AppCompatActivity {
 //        Glide.with(this).load(R.drawable.person).into(imageView);
 
         Log.d(TAG, "onCreate: is called ");
+
+        for (User user1 : DatabaseHandler.getInstance().getAllUser()) {
+            Log.d(TAG, "onCreate data user : " + user1.toString());
+        }
 
     }
 
