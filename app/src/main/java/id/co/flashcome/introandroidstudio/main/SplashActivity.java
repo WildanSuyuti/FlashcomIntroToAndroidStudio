@@ -26,7 +26,7 @@ public class SplashActivity extends AppCompatActivity {
                     e.printStackTrace();
                 } finally {
                     if (SessionManager.getInstance().isLoggedIn()) {
-                        startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                        startActivity(new Intent(SplashActivity.this, NavigationActivity.class));
 
                     } else startActivity(new Intent(SplashActivity.this, LoginActivity.class));
                     finish();

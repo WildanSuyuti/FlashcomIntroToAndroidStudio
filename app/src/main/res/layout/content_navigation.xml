@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".main.NavigationActivity"
+    tools:showIn="@layout/app_bar_navigation">
+
+
+    <FrameLayout
+        android:id="@+id/frm_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <com.volcaniccoder.bottomify.BottomifyNavigationView
+        android:id="@+id/bottomify_nav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bottomifyBackgroundColor"
+        android:orientation="horizontal"
+        app:active_color="@color/bottomifyActiveColor"
+        app:animation_duration="300"
+        app:item_padding="4dp"
+        app:item_text_size="10sp"
+        app:menu="@menu/activity_navigation_drawer"
+        app:passive_color="@color/bottomifyPassiveColor"
+        app:pressed_color="@color/bottomifyPressedColor"
+        app:scale_percent="5" />
+    }
+
+    <!--<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:id="@+id/frm_inbox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/darker_gray"
+            android:onClick="openInbox"
+            android:padding="@dimen/activity_horizontal_margin">
+
+            <ImageView
+                android:id="@+id/iv_inbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/ic_mail_black_24dp"
+                android:tint="@android:color/white" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frm_profile"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="@dimen/activity_horizontal_margin">
+
+            <ImageView
+                android:id="@+id/iv_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/ic_account_circle_black_24dp"
+                android:tint="@android:color/white" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frm_logout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="@dimen/activity_horizontal_margin">
+
+            <ImageView
+                android:id="@+id/iv_logout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/ic_log_out24dp"
+                android:tint="@android:color/white" />
+        </FrameLayout>
+
+    </LinearLayout>-->
+
+</LinearLayout>

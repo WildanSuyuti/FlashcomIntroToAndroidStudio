@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import id.co.flashcome.introandroidstudio.R;
 import id.co.flashcome.introandroidstudio.main.MainActivity;
+import id.co.flashcome.introandroidstudio.main.NavigationActivity;
 import id.co.flashcome.introandroidstudio.model.User;
 import id.co.flashcome.introandroidstudio.utility.DatabaseHandler;
 import id.co.flashcome.introandroidstudio.utility.SessionManager;
@@ -88,7 +89,8 @@ public class LoginActivity extends AppCompatActivity {
         if (db.checkUser(email, password)) {
             SessionManager.getInstance().setLoggedIn(true);
             SessionManager.getInstance().setEmail(email);
-            Intent intent = new Intent(this, MainActivity.class);
+//            Intent intent = new Intent(this, MainActivity.class);
+            Intent intent = new Intent(this, NavigationActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             finish();

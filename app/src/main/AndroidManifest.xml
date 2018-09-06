@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="id.co.flashcome.introandroidstudio">
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -30,7 +30,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".feature.inbox.InboxActivity" />
-        <activity android:name=".feature.inbox.AddDataActivity"/>
+        <activity android:name=".feature.inbox.AddDataActivity" />
+        <activity
+            android:name=".main.NavigationActivity"
+            android:label="@string/title_activity_navigation"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
