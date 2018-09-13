@@ -49,6 +49,8 @@ public class InboxFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        Log.d(TAG, "onViewCreated: is called");
+
         ((NavigationActivity) getActivity()).getSupportActionBar().setTitle("Halaman Inbox");
 
         inboxes = new ArrayList<>();

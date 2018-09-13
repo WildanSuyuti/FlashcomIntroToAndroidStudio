@@ -25,5 +25,13 @@
         android:padding="@dimen/space_10"
         android:text="jaknkajdnad" />
 
+    <Button
+        android:id="@+id/btn_call_bottom_sheet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_15"
+        android:text="Call bottom Sheet"
+        android:textAllCaps="false" />
+
 
 </LinearLayout>

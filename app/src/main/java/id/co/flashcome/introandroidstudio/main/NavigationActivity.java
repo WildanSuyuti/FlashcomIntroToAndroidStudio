@@ -4,7 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
+import android.util.Log;
+import android.view.DragEvent;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -21,6 +25,8 @@ import android.widget.Toast;
 import com.volcaniccoder.bottomify.BottomifyNavigationView;
 import com.volcaniccoder.bottomify.OnNavigationItemChangeListener;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import id.co.flashcome.introandroidstudio.R;
 import id.co.flashcome.introandroidstudio.auth.LoginActivity;
 import id.co.flashcome.introandroidstudio.feature.ProfileFragment;
@@ -33,12 +39,40 @@ import id.co.flashcome.introandroidstudio.utility.SessionManager;
 public class NavigationActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    //    private ViewPager viewPager;
+    private ViewPagerAdapter pagerAdapter;
+    //    private BottomifyNavigationView bottomifyNavigationView;
+//    private TabLayout tabLayout;
+    private ViewPagerTabAdapter pagerTabAdapter;
+
+    @BindView(R.id.viewpager)
+    ViewPager viewPager;
+    @BindView(R.id.tablayout)
+    TabLayout tabLayout;
+    @BindView(R.id.bottomify_nav)
+    BottomifyNavigationView bottomifyNavigationView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation);
+        ButterKnife.bind(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+//        viewPager = findViewById(R.id.viewpager);
+        pagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+        pagerAdapter.addFragment(new InboxFragment());
+        pagerAdapter.addFragment(new ProfileFragment());
+//        viewPager.setAdapter(pagerAdapter);
+
+//        tabLayout = findViewById(R.id.tablayout);
+        pagerTabAdapter = new ViewPagerTabAdapter(getSupportFragmentManager());
+        pagerTabAdapter.addFragment(new InboxFragment(), "Inbox");
+        pagerTabAdapter.addFragment(new ProfileFragment(), "Profile");
+//        pagerTabAdapter.addFragment(null, "Kosong");
+        viewPager.setAdapter(pagerTabAdapter);
+        tabLayout.setupWithViewPager(viewPager);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -62,8 +96,8 @@ public class NavigationActivity extends AppCompatActivity
             }
         }
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.frm_container,
-                new InboxFragment()).commit();
+/*        getSupportFragmentManager().beginTransaction().replace(R.id.frm_container,
+                new InboxFragment()).commit();*/
 
 /*        FrameLayout frmInbox = findViewById(R.id.frm_inbox);
         frmInbox.setOnClickListener(new View.OnClickListener() {
@@ -89,14 +123,54 @@ public class NavigationActivity extends AppCompatActivity
             }
         });*/
 
-        BottomifyNavigationView bottomifyNavigationView = findViewById(R.id.bottomify_nav);
+
+//        bottomifyNavigationView = findViewById(R.id.bottomify_nav);
+
         bottomifyNavigationView.setOnNavigationItemChangedListener(new OnNavigationItemChangeListener() {
             @Override
             public void onNavigationItemChanged(BottomifyNavigationView.NavigationItem navigationItem) {
-                Toast.makeText(NavigationActivity.this, "haloo", Toast.LENGTH_SHORT).show();
+                switch (navigationItem.getPosition()) {
+                    case 0:
+                        viewPager.setCurrentItem(0);
+                        break;
+                    case 1:
+                        viewPager.setCurrentItem(1);
+                        break;
+                }
+               /* Toast.makeText(NavigationActivity.this, "posisi : "
+                        + navigationItem.getPosition(), Toast.LENGTH_SHORT).show();
+                switch (navigationItem.getPosition()) {
+                    case 0:
+//                        openFragment(new InboxFragment());
+                        break;
+                    case 1:
+//                        openFragment(new ProfileFragment());
+                        break;
+                    default:
+                        Toast.makeText(NavigationActivity.this, "Logout !", Toast.LENGTH_SHORT).show();
+                        break;
+                }*/
+
             }
         });
 
+//        bottomifyNavigationView.setActiveNavigationIndex(viewPager.getCurrentItem());
+//        Log.d(NavigationActivity.class.getSimpleName(), "onCreate adapter fragment posisi : " + pagerAdapter.getFragmentPosition());
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                Log.d(NavigationActivity.class.getSimpleName(), "onPageScrolled: " + position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
     @Override
@@ -140,9 +214,9 @@ public class NavigationActivity extends AppCompatActivity
 
         if (id == R.id.nav_inbox) {
 //            startActivity(new Intent(NavigationActivity.this, InboxActivity.class));
-            openFragment(new InboxFragment());
+//            openFragment(new InboxFragment());
         } else if (id == R.id.nav_profile) {
-            openFragment(new ProfileFragment());
+//            openFragment(new ProfileFragment());
         } else if (id == R.id.nav_logout) {
             SessionManager.getInstance().clear();
             startActivity(new Intent(NavigationActivity.this, LoginActivity.class));
@@ -154,10 +228,10 @@ public class NavigationActivity extends AppCompatActivity
         return true;
     }
 
-    private void openFragment(Fragment fragment) {
+/*    private void openFragment(Fragment fragment) {
         getSupportFragmentManager().beginTransaction().replace(R.id.frm_container,
                 fragment).commit();
-    }
+    }*/
 
 /*    public void openInbox(View view) {
         openFragment(new InboxFragment());
